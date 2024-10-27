@@ -32,6 +32,11 @@ in
                 description = "Minute of the hour to run";
                 default = 5;
               };
+              Weekday = mkOption {
+                type = ints.between 0 7;
+                description = "Weekday to run (0 and 7 are Sunday)";
+                default = 0;
+              };
             };
           };
         default = { };
@@ -57,7 +62,7 @@ in
           config = {
             Label = "com.n8henrie.${service_name}";
             ProgramArguments = [ flake.apps.${pkgs.system}.default.program ];
-            StartCalendarInterval = [ { inherit (cfg.schedule) Hour Minute; } ];
+            StartCalendarInterval = [ { inherit (cfg.schedule) Hour Minute Weekday; } ];
             LowPriorityIO = true;
             Nice = 20;
             StandardOutPath = cfg.stdout;
