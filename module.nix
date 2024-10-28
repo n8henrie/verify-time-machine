@@ -41,15 +41,11 @@ in
           };
         default = { };
       };
-      stdout = mkOption {
-        type = types.str;
-        default = null;
-      };
-      stderr = mkOption {
-        type = types.str;
-        default = null;
-      };
-    };
+    }
+    // (with ((options.launchd.agents.type.getSubOptions [ ]).config.type.getSubOptions [ ]); {
+      stdout = StandardOutPath;
+      stderr = StandardErrorPath;
+    });
 
   config =
     let
