@@ -57,7 +57,7 @@ in
           enable = true;
           config = {
             Label = "com.n8henrie.${service_name}";
-            ProgramArguments = [ flake.apps.${pkgs.system}.default.program ];
+            ProgramArguments = [ flake.apps.${pkgs.stdenv.hostPlatform.system}.default.program ];
             StartCalendarInterval = [ { inherit (cfg.schedule) Hour Minute Weekday; } ];
             LowPriorityIO = true;
             Nice = 20;
